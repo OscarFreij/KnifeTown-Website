@@ -5,6 +5,7 @@ include_once "../private_html/modules/head.php";
 ?>
 <body class="d-flex flex-column min-vh-100">
     <?php
+    include_once "../private_html/modules/banner.php";
     include_once "../private_html/modules/navbar.php";
     
     if (!isset($_GET['page']))
