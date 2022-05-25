@@ -4,6 +4,12 @@ function SetActivePage() {
       });
       let value = params.page;
 
+      if (value == null)
+      {
+          console.log("no page specified in URL. Setting page to default: home");
+          value = "home";
+      }
+
       for (let index = 0; index < $(".nav-link").length; index++) {
         const element = $(".nav-link")[index];
         if (element.href.includes(value))
