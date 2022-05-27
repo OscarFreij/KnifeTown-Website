@@ -8,7 +8,7 @@ include_once "../private_html/modules/head.php";
     include_once "../private_html/modules/banner.php";
     include_once "../private_html/modules/navbar.php";
     
-    if (!isset($_GET['page']))
+    if (isset($_GET['page']))
     {
         if (file_exists("../private_html/pages/".$_GET['page'].".php"))
         {
