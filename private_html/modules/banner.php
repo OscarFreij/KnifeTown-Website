@@ -1,1 +1,1 @@
-<img class="banner" src="/static/media/images/banner.png"></img>
+<div class="banner"></div>

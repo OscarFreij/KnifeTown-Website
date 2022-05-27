@@ -4,7 +4,9 @@ body {
 
 .banner {
     height: 128px;
-    width: max-content;
-    margin-left: auto;
-    margin-right: auto;
+    width: 100vw;
+    background-image: url("../media/images/banner.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position-x: center;
 }
