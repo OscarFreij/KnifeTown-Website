@@ -1,3 +1,7 @@
+<?php
+    require_once "../private_html/container.php";
+    $container = new container();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <?php
