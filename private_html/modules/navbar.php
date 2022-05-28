@@ -23,9 +23,9 @@
         </li>
       </ul>
       <ul class="navbar-nav w-100 justify-content-end">
-	  	<!--<li class="nav-item">
-			<span class="navbar-text">Quote</spoan>
-		</li>-->
+	  	<li class="nav-item">
+			<span class="navbar-text text-light" id="currentOpeningHours">TEST</spoan>
+		</li>
 	  </ul>
     </div>
   </div>
