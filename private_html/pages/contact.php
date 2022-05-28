@@ -22,7 +22,7 @@
                 <textarea class="form-control" id="message" rows="5"></textarea>
             </div>
             <div class="col-12">
-                <button type="submit" class="btn btn-success mb-3 col-12">Confirm identity</button>
+                <button type="submit" class="btn btn-success mb-3 col-12">Send message!</button>
             </div>
     </form>
     </div>
