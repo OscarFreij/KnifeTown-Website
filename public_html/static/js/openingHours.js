@@ -1,7 +1,7 @@
 function setCurrentOpeningHours() {
     var a = new Date();
     var days = new Array(7);
-    days[0] = "12:00-20:00";
+    days[0] = "12:00-19:00";
     days[1] = null;
     days[2] = "11:00-19:00";
     days[3] = "11:00-19:00";
