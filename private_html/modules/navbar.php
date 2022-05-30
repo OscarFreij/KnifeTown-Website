@@ -1,11 +1,11 @@
-<nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark">
+<nav class="navbar navbar-expand-xl sticky-top navbar-dark bg-dark">
 <div class="container-fluid">
     <a class="navbar-brand w-50" href="/">Knifetown Burgers & Arepas</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse w-100" id="navbarText">
-      <ul class="navbar-nav w-100 justify-content-evenly me-auto mb-2 mb-lg-0">
+      <ul class="navbar-nav w-100 justify-content-evenly me-auto mb-2 mb-xl-0">
         <li class="nav-item">
           <a class="nav-link" href="?page=home">Home</a>
         </li>
@@ -13,10 +13,10 @@
           <a class="nav-link" href="?page=menu">Menu</a>
         </li>
 		<li class="nav-item">
-          <a class="nav-link" href="?page=about">About Us</a>
+          <a class="nav-link" href="?page=about">About&nbsp;Us</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="?page=findus">Find Us</a>
+          <a class="nav-link" href="?page=findus">Find&nbsp;Us</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="?page=contact">Contact</a>
