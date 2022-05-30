@@ -23,10 +23,19 @@
         </li>
       </ul>
       <ul class="navbar-nav w-100 justify-content-end">
-	  	<li class="nav-item">
-			<span class="navbar-text text-light" id="currentOpeningHours">TEST</span>
-		</li>
-	  </ul>
+	  	<li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="currentOpeningHours" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <?php
+              $container->functions()->getCurrentOpeningState();
+            ?>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark" aria-labelledby="currentOpeningHours">
+            <?php
+              $container->functions()->getOpeningStates();
+            ?>
+          </ul>
+        </li>
+	    </ul>
     </div>
   </div>
 </nav>

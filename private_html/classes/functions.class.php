@@ -37,5 +37,100 @@ class functions
             $this->createCategory($categories[$i]);
         }
     }
+
+    public function getCurrentOpeningState()
+    {
+        $data = $this->container->db()->constructResultQuerry('SELECT * FROM `openingHours` WHERE `day` = '.date("N").';')[0];
+        $isPre = false;
+        $isOpen = false;
+        $isPost = false;
+
+        if (isset($data['openTime']) && isset($data['closeTime']))
+        {
+            $date1 = DateTime::createFromFormat('H:i:s', date('H:i:s'));
+            $date2 = DateTime::createFromFormat('H:i:s', $data['openTime']);
+            $date3 = DateTime::createFromFormat('H:i:s', $data['closeTime']);
+            if ($date1 > $date2 && $date1 < $date3)
+            {
+                $isOpen = true;
+            }
+            else if ($date1 < $date2)
+            {
+                $isPre = true;
+            }
+            else if ($date1 > $date3)
+            {
+                $isPost = true;
+            }
+    
+            if ($isOpen)
+            {
+                echo("Open between: ".DateTime::createFromFormat('H:i', $data['openTime'])." -> ".DateTime::createFromFormat('H:i:s', $data['closeTime']));
+            }
+            else if ($isPre)
+            {
+                echo("Opens at: ".DateTime::createFromFormat('H:i', $data['openTime']));
+            }
+            else if ($isPost)
+            {
+                echo("Closed for today");
+            }
+        }
+        else
+        {
+            echo("Closed for today");
+        }
+    }
+
+    public function getOpeningStates()
+    {
+        $data = $this->container->db()->constructResultQuerry('SELECT * FROM `openingHours` WHERE `specialDate` IS NULL ORDER BY `day` ASC;');
+
+        if (isset($data))
+        {
+            for ($j=0; $j < count($data); $j++) { 
+                $row = $data[$j];
+
+                $dayDiff = $row['day'] - date('N');
+                $timeSpanString = "CLOSED";
+
+                if (isset($row['openTime']) && isset($row['closeTime']))
+                {
+                    $timeSpanString = $row['openTime']." -> ".$row['closeTime'];
+                }
+                
+                if (date('N') == $row['day'])
+                {
+                    ?>
+                    <li>
+                        <span class="dropdown-item d-flex justify-content-between gap-3">
+                            <span>
+                                <?=date('l').": "?>
+                            </span>
+                            <span>
+                                <?=$timeSpanString?>
+                            </span>
+                        </span>
+                    </li>
+                    <?php
+                }
+                else
+                {
+                    ?>
+                    <li>
+                        <span class="dropdown-item d-flex justify-content-between gap-3">
+                            <span>
+                                <?=date('l', strtotime($dayDiff." day")).": "?>
+                            </span>
+                            <span>
+                                <?=$timeSpanString?>
+                            </span>
+                        </span>
+                    </li>
+                    <?php
+                }
+            }   
+        }
+    }
 }
 ?>
