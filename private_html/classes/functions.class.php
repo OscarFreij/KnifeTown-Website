@@ -103,7 +103,7 @@ class functions
                 {
                     ?>
                     <li>
-                        <span class="dropdown-item d-flex justify-content-between gap-3">
+                        <span class="dropdown-item bg-success d-flex justify-content-between gap-3 ">
                             <span>
                                 <?=date('l').": "?>
                             </span>
