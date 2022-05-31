@@ -65,11 +65,11 @@ class functions
     
             if ($isOpen)
             {
-                echo("Open between: ".DateTime::createFromFormat('H:i', $data['openTime'])." -> ".DateTime::createFromFormat('H:i:s', $data['closeTime']));
+                echo("Open between: ".$data['openTime']." -> ".$data['closeTime']);
             }
             else if ($isPre)
             {
-                echo("Opens at: ".DateTime::createFromFormat('H:i', $data['openTime']));
+                echo("Opens at: ".$data['openTime']);
             }
             else if ($isPost)
             {
