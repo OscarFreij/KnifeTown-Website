@@ -3,7 +3,9 @@
         <nav class="navbar navbar-light bg-light">
             <div class="container-fluid">
                 <span class="navbar-text col-12 col-md-4 text-md-start text-center">
-                    "Vi gör burgare för att de ska vara goda.<br>Inte för att tjäna pengar." - Fredrik Andersson
+                    <?php
+                    $container->functions()->getCustomPageContent('quoteFooter');
+                    ?>
                 </span>
                 <span class="col-12 col-md-4 text-md-center text-center">
                     <div>
