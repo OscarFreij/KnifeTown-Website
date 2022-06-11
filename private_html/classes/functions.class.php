@@ -132,5 +132,14 @@ class functions
             }   
         }
     }
+
+    public function getCustomPageContent(string $itemName)
+    {
+        $data = $this->container->db()->constructResultQuerry('SELECT `content` FROM `pageContent` WHERE `itemName` = '.$this->container->db()->quote($itemName).';');
+        if (isset($data))
+        {
+            echo($data[0]['content']);
+        }
+    }
 }
 ?>
