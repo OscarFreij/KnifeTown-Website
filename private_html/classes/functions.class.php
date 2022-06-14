@@ -9,6 +9,7 @@ class functions
         $this->container = $container;    
     }
    
+    #region Menu Items & Categories
     public function getCategories()
     {
         return $this->container->db()->constructResultQuerry('SELECT * FROM `menuCategory` WHERE 1 ORDER BY displayOrder ASC;');
@@ -37,7 +38,9 @@ class functions
             $this->createCategory($categories[$i]);
         }
     }
-
+    #endregion
+    
+    #region Opening Hours / State
     public function getCurrentOpeningState()
     {
         $data = $this->container->db()->constructResultQuerry('SELECT * FROM `openingHours` WHERE `day` = '.date("N").';')[0];
@@ -141,7 +144,9 @@ class functions
             }   
         }
     }
+    #endregion
 
+    #region Custom Page Content
     public function getCustomPageContent(string $itemName)
     {
         $data = $this->container->db()->constructResultQuerry('SELECT `content` FROM `pageContent` WHERE `itemName` = '.$this->container->db()->quote($itemName).';');
@@ -154,5 +159,6 @@ class functions
             echo("# No record for: ".$itemName. " exists #");
         }
     }
+    #endregion
 }
 ?>
