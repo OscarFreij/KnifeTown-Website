@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-xl sticky-top navbar-dark bg-dark">
 <div class="container-fluid">
-    <a class="navbar-brand w-50" href="/">Knifetown Burgers & Arepas</a>
+    <a class="navbar-brand w-50" href="/">Knifetown Burgers</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
