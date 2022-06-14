@@ -136,9 +136,13 @@ class functions
     public function getCustomPageContent(string $itemName)
     {
         $data = $this->container->db()->constructResultQuerry('SELECT `content` FROM `pageContent` WHERE `itemName` = '.$this->container->db()->quote($itemName).';');
-        if (isset($data))
+        if (isset($data[0]))
         {
             echo($data[0]['content']);
+        }
+        else
+        {
+            echo("# No record for: ".$itemName. " exists #");
         }
     }
 }
