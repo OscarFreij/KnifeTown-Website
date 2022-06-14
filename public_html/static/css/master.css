@@ -10,3 +10,9 @@ body {
     background-size: contain;
     background-position-x: center;
 }
+
+.menuCategoryItem-picture
+{
+    object-fit: cover;
+    height: 240px;
+}
