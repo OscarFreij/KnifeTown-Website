@@ -16,3 +16,7 @@ body {
     object-fit: cover;
     height: 240px;
 }
+
+.dropdown-item {
+    pointer-events: none;    
+}
