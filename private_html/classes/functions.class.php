@@ -65,20 +65,20 @@ class functions
     
             if ($isOpen)
             {
-                echo("Open between: ".$data['openTime']." -> ".$data['closeTime']);
+                echo("Öppen mellan: ".$data['openTime']." -> ".$data['closeTime']);
             }
             else if ($isPre)
             {
-                echo("Opens at: ".$data['openTime']);
+                echo("Öppnar vid: ".$data['openTime']);
             }
             else if ($isPost)
             {
-                echo("Closed for today");
+                echo("Stängd för idag");
             }
         }
         else
         {
-            echo("Closed for today");
+            echo("Stängd för idag");
         }
     }
 
@@ -86,13 +86,22 @@ class functions
     {
         $data = $this->container->db()->constructResultQuerry('SELECT * FROM `openingHours` WHERE `specialDate` IS NULL ORDER BY `day` ASC;');
 
+        $dayNameFormat = datefmt_create(
+            'sv-SE',
+            IntlDateFormatter::FULL,
+            IntlDateFormatter::FULL,
+            'Europe/Stockholm',
+            IntlDateFormatter::GREGORIAN,
+            'EEEE'
+        );
+
         if (isset($data))
         {
             for ($j=0; $j < count($data); $j++) { 
                 $row = $data[$j];
 
                 $dayDiff = $row['day'] - date('N');
-                $timeSpanString = "CLOSED";
+                $timeSpanString = "Stängt";
 
                 if (isset($row['openTime']) && isset($row['closeTime']))
                 {
@@ -105,7 +114,7 @@ class functions
                     <li>
                         <span class="dropdown-item bg-success d-flex justify-content-between gap-3 ">
                             <span>
-                                <?=date('l').": "?>
+                                <?=ucfirst(datefmt_format($dayNameFormat,date('U'))).": "?>
                             </span>
                             <span>
                                 <?=$timeSpanString?>
@@ -120,7 +129,7 @@ class functions
                     <li>
                         <span class="dropdown-item d-flex justify-content-between gap-3">
                             <span>
-                                <?=date('l', strtotime($dayDiff." day")).": "?>
+                                <?=ucfirst(datefmt_format($dayNameFormat, strtotime($dayDiff." day"))).": "?>
                             </span>
                             <span>
                                 <?=$timeSpanString?>
