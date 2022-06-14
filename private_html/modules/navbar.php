@@ -7,19 +7,19 @@
     <div class="collapse navbar-collapse w-100" id="navbarText">
       <ul class="navbar-nav w-100 justify-content-evenly me-auto mb-2 mb-xl-0">
         <li class="nav-item">
-          <a class="nav-link" href="?page=home">Home</a>
+          <a class="nav-link" href="?page=home">Hem</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="?page=menu">Menu</a>
+          <a class="nav-link" href="?page=menu">Meny</a>
         </li>
 		<li class="nav-item">
-          <a class="nav-link" href="?page=about">About&nbsp;Us</a>
+          <a class="nav-link" href="?page=about">Om&nbsp;oss</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="?page=findus">Find&nbsp;Us</a>
+          <a class="nav-link" href="?page=findus">Hitta&nbsp;oss</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="?page=contact">Contact</a>
+          <a class="nav-link" href="?page=contact">Kontakt</a>
         </li>
       </ul>
       <ul class="navbar-nav w-100 justify-content-end">

@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row my-3">
         <span class="fs-1 text-center text">
-            Who are we and what do we do?
+            Vilka är vi och vad gör vi?
         </span>
     </div>
     <div class="row">

@@ -1,13 +1,13 @@
 <div class="container">
     <div class="row my-3">
         <span class="fs-1 text-center text">
-            Find Us!
+            Hitta oss!
         </span>
     </div>
     <div class="row">
         <div class="container col-12 col-md-6">
             <span class="fs-4 text">
-                This is where you find us! 
+                Du kan hitta oss på adressen nedan eller via kartan! 
             </span>
             <br>
             <span class="fs-5 text">
