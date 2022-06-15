@@ -3,5 +3,8 @@
     require_once "../private_html/container.php";
     $container = new container();
 
-    $container->functions()->prepMail(array("email"=>"otg020313@gmail.com", "phone"=>"0709556425", "msg"=>"Hej detta är ett testmeddelande!"));
+
+    if (isset($_POST['email']) && isset($_POST['phone']) && isset($_POST['message']))
+
+    $container->functions()->sendFormEmail(array("email"=>$_POST['email'], "phone"=>$_POST['phone'], "msg"=>$_POST['message']));
 ?>
