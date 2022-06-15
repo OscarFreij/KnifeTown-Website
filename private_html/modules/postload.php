@@ -4,4 +4,16 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
     <script src="static/js/navbar.js"></script>
     <script src="static/js/main.js"></script>
+    <?php
+    if (isset($_GET['page']))
+    {
+        if (file_exists("static/js/".$_GET['page'].".js"))
+        {
+            ?>
+        <script src="static/js/<?=$_GET['page']?>.js"></script>
+        <?php
+        }
+        
+    }
+    ?>
 </div>
