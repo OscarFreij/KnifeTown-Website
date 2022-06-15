@@ -16,6 +16,13 @@ class credentials
         return $this->dbCredentials;
     }
 
+    public function getMailCredentials()
+    {
+        $data = $this->readFileData("../private_html/access.json");
+        $this->mailCredentials = array("username" => $data->mailUsername,"password" => $data->mailPassword);
+        return $this->mailCredentials;
+    }
+
     private function readFileData($fileToRead)
     {
         // $fileToRead is the absolute path to the file
