@@ -22,17 +22,45 @@ class functions
     }
    
     #region Menu Items & Categories
-    public function getCategories()
+    public function getMenus($enabled = 1)
     {
-        return $this->container->db()->constructResultQuerry('SELECT * FROM `menuCategory` WHERE 1 ORDER BY displayOrder ASC;');
+        $menues = $this->container->db()->constructResultQuerry('SELECT * FROM `menus` WHERE `enabled` = '.$enabled.' ORDER BY `loadOrder` ASC;');
+        
+        if (count($menues) > 0)
+        {
+            for ($i=0; $i < count($menues); $i++) { 
+                $menu = $menues[$i];
+                $this->createMenu($menu);
+            }
+        }
     }
 
-    public function getCategoryItems(int $categoryId)
+    public function getMenuCategoryRelationRecords(int $id, int $enabled = 1)
     {
-        return $this->container->db()->constructResultQuerry('SELECT * FROM `menuItems` WHERE `menuCategoryId` = '.$categoryId.' ORDER BY displayOrder ASC;');
+        return $this->container->db()->constructResultQuerry('SELECT * FROM `menuCategoryRelations` WHERE `enabled` = '.$enabled.' AND `menuId` = '.$id.' ORDER BY  `loadOrder` ASC;');
     }
 
-    public function createCategory(array $category)
+    public function getMenuCategoryItemRelationRecords(int $id, int $enabled = 1)
+    {
+        return $this->container->db()->constructResultQuerry('SELECT * FROM `menuCategoryItemRelations` WHERE `enabled` = '.$enabled.' AND `categoryRelationRecordId` = '.$id.' ORDER BY  `loadOrder` ASC;');
+    }
+
+    public function getCategory(int $id)
+    {
+        return $this->container->db()->constructResultQuerry('SELECT * FROM `menuCategory` WHERE `id` = '.$id.';');
+    }
+
+    public function getMenuItem(int $id)
+    {
+        return $this->container->db()->constructResultQuerry('SELECT * FROM `menuItems` WHERE `id` = '.$id.';');
+    }
+
+    public function createMenu(array $menu)
+    {
+        require "../private_html/templates/menu.php";
+    }
+
+    public function createCategory(array $category, int $crrId, int $menuId)
     {
         require "../private_html/templates/menuCategory.php";
     }
@@ -42,13 +70,9 @@ class functions
         require "../private_html/templates/menuCategoryItem.php";
     }
 
-    public function createCategoryAccordion()
+    public function createCategoryAccordion(array $category, int $crrId, int $menuId)
     {
-        $categories = $this->getCategories();
-
-        for ($i=0; $i < count($categories); $i++) { 
-            $this->createCategory($categories[$i]);
-        }
+        $this->createCategory($category, $crrId, $menuId);
     }
     #endregion
     
