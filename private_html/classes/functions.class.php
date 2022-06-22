@@ -124,6 +124,21 @@ class functions
     public function getOpeningStates()
     {
         $data = $this->container->db()->constructResultQuerry('SELECT * FROM `openingHours` WHERE `specialDate` IS NULL ORDER BY `day` ASC;');
+        $data2 = $this->container->db()->constructResultQuerry('SELECT * FROM `openingHours` WHERE `specialDate` IS NOT NULL AND `specialViewStart` <= CURDATE() AND `specialViewStop` >= CURDATE() ORDER BY `specialDate` ASC;');
+        
+        $todayIsSpecial = false;
+
+        if (isset($data2))
+        {
+            for ($j=0; $j < count($data2); $j++) { 
+                $diff = strtotime(date('Y-n-j')) - strtotime($data2[$j]['specialDate']);
+                if ($diff == 0)
+                {
+                    $todayIsSpecial = true;
+                }
+            }
+        }
+
 
         $dayNameFormat = datefmt_create(
             'sv-SE',
@@ -147,7 +162,7 @@ class functions
                     $timeSpanString = $row['openTime']." -> ".$row['closeTime'];
                 }
                 
-                if (date('N') == $row['day'])
+                if (date('N') == $row['day'] && !$todayIsSpecial)
                 {
                     ?>
                     <li>
@@ -169,6 +184,67 @@ class functions
                         <span class="dropdown-item d-flex justify-content-between gap-3">
                             <span>
                                 <?=ucfirst(datefmt_format($dayNameFormat, strtotime($dayDiff." day"))).": "?>
+                            </span>
+                            <span>
+                                <?=$timeSpanString?>
+                            </span>
+                        </span>
+                    </li>
+                    <?php
+                }
+            }   
+        }
+
+        $this->getSpecialOpeningStates();
+    }
+
+    public function getSpecialOpeningStates()
+    {
+        
+        
+        $data = $this->container->db()->constructResultQuerry('SELECT * FROM `openingHours` WHERE `specialDate` IS NOT NULL AND `specialViewStart` <= CURDATE() AND `specialViewStop` >= CURDATE() ORDER BY `specialDate` ASC;');
+
+        if (isset($data))
+        {
+        
+            ?>
+            <li><hr class="dropdown-divider"></li>
+            <?php            
+
+            for ($j=0; $j < count($data); $j++) { 
+                $row = $data[$j];
+
+                $timeSpanString = "Stängt";
+
+                if (isset($row['openTime']) && isset($row['closeTime']))
+                {
+                    $timeSpanString = $row['openTime']." -> ".$row['closeTime'];
+                }
+                
+
+                $diff = strtotime(date('Y-n-j')) - strtotime($row['specialDate']);
+                if ($diff == 0)
+                {
+                    ?>
+                    <li>
+                        <span class="dropdown-item bg-success d-flex justify-content-between gap-3">
+                            <span>
+                                <?=$row['specialName'].": "?>
+                            </span>
+                            <span>
+                                <?=$timeSpanString?>
+                            </span>
+                        </span>
+                    </li>
+                    <?php
+                }
+                else
+                {
+                    ?>
+                    <li>
+                        <span class="dropdown-item d-flex justify-content-between gap-3">
+                            <span>
+                                <?=$row['specialName'].": "?>
                             </span>
                             <span>
                                 <?=$timeSpanString?>
