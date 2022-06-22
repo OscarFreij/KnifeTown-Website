@@ -84,11 +84,32 @@ class functions
         $isOpen = false;
         $isPost = false;
 
+
+        $data2 = $this->container->db()->constructResultQuerry('SELECT * FROM `openingHours` WHERE `specialDate` = CURDATE();');
+
+        if (count($data2) > 0)
+        {
+            $data = $data2[0];
+            $u1 = strtotime(date('Y-n-J')." ".$data['closeTime']);
+            $u2 = strtotime(date('Y-n-J')." ".$data['openTime']);
+        
+            if (($u1 - $u2) <= 0)
+            {
+                $timeSpan = date_create(($data['specialDate']." ".$data['closeTime']))->modify('+1 day');
+                $data['closeTime'] = date("Y-n-j H:i:s", date_timestamp_get($timeSpan));
+            }
+        }
+
+        
+
+        
+        
+
         if (isset($data['openTime']) && isset($data['closeTime']))
         {
-            $date1 = DateTime::createFromFormat('H:i:s', date('H:i:s'));
-            $date2 = DateTime::createFromFormat('H:i:s', $data['openTime']);
-            $date3 = DateTime::createFromFormat('H:i:s', $data['closeTime']);
+            $date1 = strtotime(date('H:i:s'));
+            $date2 = strtotime($data['openTime']);
+            $date3 = strtotime($data['closeTime']);
             if ($date1 > $date2 && $date1 < $date3)
             {
                 $isOpen = true;
@@ -104,11 +125,11 @@ class functions
     
             if ($isOpen)
             {
-                echo("Öppen mellan: ".$data['openTime']." -> ".$data['closeTime']);
+                echo("Öppen mellan: ".date('H:i:s', $date2)." -> ".date('H:i:s', $date3));
             }
             else if ($isPre)
             {
-                echo("Öppnar vid: ".$data['openTime']);
+                echo("Öppnar vid: ".date('H:i:s', $date2));
             }
             else if ($isPost)
             {
