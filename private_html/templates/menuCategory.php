@@ -13,7 +13,7 @@
                 if (count($cirr) > 0)
                 {
                     for ($k=0; $k < count($cirr); $k++) { 
-                        $item = $this->container->functions()->getMenuItem($cirr[$k]['id'])[0];
+                        $item = $this->container->functions()->getMenuItem($cirr[$k]['itemId'])[0];
                         $this->container->functions()->createCategoryItem($item);
                     }
                 }
