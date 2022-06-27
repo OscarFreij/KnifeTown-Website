@@ -149,7 +149,7 @@ class functions
         
         $todayIsSpecial = false;
 
-        if (isset($data2))
+        if (count($data2) > 0)
         {
             for ($j=0; $j < count($data2); $j++) { 
                 $diff = strtotime(date('Y-n-j')) - strtotime($data2[$j]['specialDate']);
@@ -170,7 +170,7 @@ class functions
             'EEEE'
         );
 
-        if (isset($data))
+        if (count($data) > 0)
         {
             for ($j=0; $j < count($data); $j++) { 
                 $row = $data[$j];
@@ -225,7 +225,7 @@ class functions
         
         $data = $this->container->db()->constructResultQuerry('SELECT * FROM `openingHours` WHERE `specialDate` IS NOT NULL AND `specialViewStart` <= CURDATE() AND `specialViewStop` >= CURDATE() ORDER BY `specialDate` ASC;');
 
-        if (isset($data))
+        if (count($data) > 0)
         {
         
             ?>
