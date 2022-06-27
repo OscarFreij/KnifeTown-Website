@@ -12,7 +12,7 @@ function SetActivePage() {
 
       for (let index = 0; index < $(".nav-link").length; index++) {
         const element = $(".nav-link")[index];
-        if (element.href.includes(value))
+        if (element.href.includes(value) && !element.href.includes("editorPage"))
         {
             element.classList.add("active");
             element.setAttribute("aria-current", "page");
