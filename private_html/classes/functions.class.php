@@ -292,6 +292,12 @@ class functions
             echo("# No record for: ".$itemName. " exists #");
         }
     }
+
+    public function setCustomPageContent(string $itemName, string $data)
+    {
+        $data = $this->container->db()->constructQuerry('UPDATE `pageContent` SET `content`='.$this->container->db()->quote($data).' WHERE `itemName` = '.$this->container->db()->quote($itemName).';');
+        return $data;
+    }
     #endregion
 
     #region Contact Form & Mail

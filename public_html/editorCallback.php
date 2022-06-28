@@ -51,6 +51,33 @@ if (isset($_POST['cba'])) //cba stands for CallBack Action
                 http_response_code(400);
             }
             break;
+        
+        case 'set_content':
+            if (isset($_SESSION['username']))
+            {
+                if (isset($_POST['itemName']) && isset($_POST['pageContent']))
+                {
+                    $success = $container->functions()->setCustomPageContent($_POST['itemName'], $_POST['pageContent']);
+                    if ($success)
+                    {
+                        http_response_code(202);
+                    }
+                    else
+                    {
+                        http_response_code(409);
+                    }
+                }
+                else
+                {
+                    http_response_code(400);
+                }
+                
+            }
+            else
+            {
+                http_response_code(401);
+            }
+            break;
         default:
             http_response_code(400);
             break;

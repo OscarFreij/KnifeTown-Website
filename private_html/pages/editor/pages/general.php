@@ -19,7 +19,7 @@ else
             <span class="text-center text">
                 Nedan fällt inehåller vad som ska visas på sidan "Om Oss".
             </span>
-            <textarea class="form-control my-1" name="" id="" cols="30" rows="15">
+            <textarea class="form-control my-1" name="content" id="content" cols="30" rows="15">
                 <?php
                 $container->functions()->getCustomPageContent('contentAbout');
                 ?>
@@ -27,7 +27,7 @@ else
         </div>
         <div class="row my-34 col-12">
             <div class="col-12">
-                <button type="button" class="btn btn-success mb-3 col-12">
+                <button type="button" onClick="sendQuerry('contentAbout');" class="btn btn-success mb-3 col-12">
                     Spara ändringar
                 </button>
             </div>
