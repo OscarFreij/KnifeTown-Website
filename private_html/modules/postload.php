@@ -13,7 +13,21 @@
         <script src="static/js/<?=$_GET['page']?>.js"></script>
         <?php
         }
+
+        if ($_GET['page'] == "edit")
+        {
+            if(isset($_GET['editorPage']))
+            {
+                if (file_exists("static/js/edit".$_GET['editorPage'].".js"))
+                {
+                    ?>
+                <script src="static/js/edit<?=$_GET['editorPage']?>.js"></script>
+                <?php
+                }
+            }
+        }
         
     }
+    
     ?>
 </div>

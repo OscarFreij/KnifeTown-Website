@@ -17,6 +17,10 @@ if (isset($_GET['editorPage']))
             require_once "../private_html/pages/editor/modules/navbar.php";
             require "../private_html/pages/editor/pages/general.php";
             break;
+        case 'openHours':
+            require_once "../private_html/pages/editor/modules/navbar.php";
+            require "../private_html/pages/editor/pages/openHours.php";
+            break;
         case 'admin':
             require_once "../private_html/pages/editor/modules/navbar.php";
             require "../private_html/pages/editor/pages/admin.php";
