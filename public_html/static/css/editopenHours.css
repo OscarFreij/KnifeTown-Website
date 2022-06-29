@@ -1,0 +1,11 @@
+.row
+{
+    display: flex!important;
+    
+}
+
+
+.list-group
+{
+    padding-left: calc(var(--bs-gutter-x) * .5);
+}

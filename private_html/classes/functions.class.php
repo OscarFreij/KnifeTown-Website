@@ -277,6 +277,184 @@ class functions
             }   
         }
     }
+
+    public function getOpeningStatesStandardData()
+    {
+        return $data = $this->container->db()->constructResultQuerry('SELECT * FROM `openingHours` WHERE `specialDate`IS NULL');
+    }
+
+    public function getOpeningStatesSpecialData()
+    {
+        return $data = $this->container->db()->constructResultQuerry('SELECT * FROM `openingHours` WHERE `specialDate`IS NOT NULL');
+    }
+
+    public function displayEditorOpeningStatesStandard()
+    {
+        $data = $this->getOpeningStatesStandardData();
+        $dayNameFormat = datefmt_create(
+            'sv-SE',
+            IntlDateFormatter::FULL,
+            IntlDateFormatter::FULL,
+            'Europe/Stockholm',
+            IntlDateFormatter::GREGORIAN,
+            'EEEE'
+        );
+
+        for ($j=0; $j < count($data); $j++) { 
+            $row = $data[$j];
+
+            $dayDiff = $row['day'] - date('N');
+            $rowId = $row['id'];
+            $dayName = ucfirst(datefmt_format($dayNameFormat, strtotime($dayDiff." day")));
+            $openTime = $row['openTime'];
+            $closeTime = $row['closeTime'];
+            
+            require "../private_html/templates/editorOpeningHoursListItemStandard.php";
+        }
+    }
+
+    public function displayEditorOpeningStatesSpecial()
+    {
+        $data = $this->getOpeningStatesSpecialData();
+        for ($j=0; $j < count($data); $j++) { 
+            $row = $data[$j];
+
+            $rowId = $row['id'];
+            $dayName = $row['specialName'];
+            $openTime = $row['openTime'];
+            $closeTime = $row['closeTime'];
+            $date = $row['specialDate'];
+            $viewStartDate = $row['specialViewStart'];
+            $viewStopDate = $row['specialViewStop'];
+            
+            require "../private_html/templates/editorOpeningHoursListItemSpecial.php";
+        }
+    }
+
+    public function setOpeningStatesStandard(array $data)
+    {
+        $success = false;
+        error_log(print_r($data,true));
+        for ($i=0; $i < count($data); $i++) { 
+            $element = $data[$i];
+
+            $closedOnThisDay = false;
+
+            if ($element->startTime == "")
+            {
+                $closedOnThisDay = true;
+            }
+            else
+            {
+                $element->startTime = $this->container->db()->quote($element->startTime);
+            }
+
+
+            if ($element->stopTime == "")
+            {
+                $closedOnThisDay = true;
+            }
+            else
+            {
+                $element->stopTime = $this->container->db()->quote($element->stopTime);
+            }
+
+
+            error_log('UPDATE `openingHours` SET `openTime`='.$element->startTime.',`closeTime`='.$element->stopTime.' WHERE `id` = '.$element->id.';');
+            if ($closedOnThisDay)
+            {
+                $success = $this->container->db()->constructQuerry('UPDATE `openingHours` SET `openTime`=NULL,`closeTime`=NULL WHERE `id` = '.$element->id.';');
+            }
+            else
+            {
+                $success = $this->container->db()->constructQuerry('UPDATE `openingHours` SET `openTime`='.$element->startTime.',`closeTime`='.$element->stopTime.' WHERE `id` = '.$element->id.';');
+            }
+            if (!$success)
+            {
+                return false;
+            }
+        }
+        return true;
+        
+    }
+
+    public function setOpeningStatesSpecial(array $data)
+    {
+        $success = false;
+        error_log(print_r($data,true));
+        for ($i=0; $i < count($data); $i++) { 
+            $element = $data[$i];
+
+            $closedOnThisDay = false;
+
+            if ($element->startTime == "")
+            {
+                $closedOnThisDay = true;
+            }
+
+            if ($element->stopTime == "")
+            {
+                $closedOnThisDay = true;
+            }
+
+            error_log('UPDATE `openingHours` SET `openTime`='.$this->container->db()->quote($element->startTime).',`closeTime`='.$this->container->db()->quote($element->stopTime).',`specialName`='.$this->container->db()->quote($element->name).',`specialDate`='.$this->container->db()->quote($element->specialDate).',`specialViewStart`='.$this->container->db()->quote($element->specialViewStart).',`specialViewStop`='.$this->container->db()->quote($element->specialViewStop).' WHERE `id` = '.$this->container->db()->quote($element->id).';');
+            if ($closedOnThisDay)
+            {
+                $success = $this->container->db()->constructQuerry('UPDATE `openingHours` SET `openTime`=NULL,`closeTime`=NULL,`specialName`='.$this->container->db()->quote($element->name).',`specialDate`='.$this->container->db()->quote($element->specialDate).',`specialViewStart`='.$this->container->db()->quote($element->specialViewStart).',`specialViewStop`='.$this->container->db()->quote($element->specialViewStop).' WHERE `id` = '.$this->container->db()->quote($element->id).';');
+            }
+            else
+            {
+                $success = $this->container->db()->constructQuerry('UPDATE `openingHours` SET `openTime`='.$this->container->db()->quote($element->startTime).',`closeTime`='.$this->container->db()->quote($element->stopTime).',`specialName`='.$this->container->db()->quote($element->name).',`specialDate`='.$this->container->db()->quote($element->specialDate).',`specialViewStart`='.$this->container->db()->quote($element->specialViewStart).',`specialViewStop`='.$this->container->db()->quote($element->specialViewStop).' WHERE `id` = '.$this->container->db()->quote($element->id).';');
+            }
+            if (!$success)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public function createOpeningStatesSpecial(array $data)
+    {
+        $success = false;
+        error_log(print_r($data,true));
+        for ($i=0; $i < count($data); $i++) { 
+            $element = $data[$i];
+
+            $closedOnThisDay = false;
+
+            if ($element->startTime == "")
+            {
+                $closedOnThisDay = true;
+            }
+
+
+            if ($element->stopTime == "")
+            {
+                $closedOnThisDay = true;
+            }
+
+            if ($closedOnThisDay)
+            {
+                $success = $this->container->db()->constructQuerry('INSERT INTO `openingHours`(`specialDate`, `specialName`, `specialViewStart`, `specialViewStop`) VALUES ('.$this->container->db()->quote($element->specialDate).', '.$this->container->db()->quote($element->name).', '.$this->container->db()->quote($element->specialViewStart).', '.$this->container->db()->quote($element->specialViewStop).')');
+            }
+            else
+            {
+                $success = $this->container->db()->constructQuerry('INSERT INTO `openingHours`(`openTime`, `closeTime`, `specialDate`, `specialName`, `specialViewStart`, `specialViewStop`) VALUES ('.$this->container->db()->quote($element->startTime).', '.$this->container->db()->quote($element->stopTime).', '.$this->container->db()->quote($element->specialDate).', '.$this->container->db()->quote($element->name).', '.$this->container->db()->quote($element->specialViewStart).', '.$this->container->db()->quote($element->specialViewStop).')');
+            }
+            if (!$success)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public function removeOpeningStatesSpecial(int $id)
+    {
+        $success = $this->container->db()->constructQuerry('DELETE FROM `openingHours` WHERE `id` = '.$id.';');
+        return $success;
+    }
     #endregion
 
     #region Custom Page Content

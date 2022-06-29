@@ -78,8 +78,118 @@ if (isset($_POST['cba'])) //cba stands for CallBack Action
                 http_response_code(401);
             }
             break;
+
+        case 'set_openingHours_standard':
+            if (isset($_SESSION['username']))
+            {
+                if (isset($_POST['data']))
+                {
+                    $success = $container->functions()->setOpeningStatesStandard(json_decode(($_POST['data'])));
+                    if ($success)
+                    {
+                        http_response_code(202);
+                    }
+                    else
+                    {
+                        http_response_code(409);
+                    }
+                }
+                else
+                {
+                    http_response_code(400);
+                }
+                
+            }
+            else
+            {
+                http_response_code(401);
+            }
+            break;
+
+        case 'set_openingHours_special':
+            if (isset($_SESSION['username']))
+            {
+                if (isset($_POST['data']))
+                {
+                    $success = $container->functions()->setOpeningStatesSpecial(json_decode(($_POST['data'])));
+                    if ($success)
+                    {
+                        http_response_code(202);
+                    }
+                    else
+                    {
+                        http_response_code(409);
+                    }
+                }
+                else
+                {
+                    http_response_code(400);
+                }
+                
+            }
+            else
+            {
+                http_response_code(401);
+            }
+            break;
+
+        case 'create_openingHours_special':
+            if (isset($_SESSION['username']))
+            {
+                if (isset($_POST['data']))
+                {
+                    $success = $container->functions()->createOpeningStatesSpecial(json_decode(($_POST['data'])));
+                    if ($success)
+                    {
+                        http_response_code(202);
+                    }
+                    else
+                    {
+                        http_response_code(409);
+                    }
+                }
+                else
+                {
+                    http_response_code(400);
+                }
+                
+            }
+            else
+            {
+                http_response_code(401);
+            }
+            break;
+
+        case 'remove_openingHours_special':
+            if (isset($_SESSION['username']))
+            {
+                error_log("POST DATA: ".$_POST['data']);
+                if (isset($_POST['data']))
+                {
+                    $success = $container->functions()->removeOpeningStatesSpecial($_POST['data']);
+                    if ($success)
+                    {
+                        http_response_code(202);
+                    }
+                    else
+                    {
+                        http_response_code(409);
+                    }
+                }
+                else
+                {
+                    http_response_code(400);
+                }
+                
+            }
+            else
+            {
+                http_response_code(401);
+            }
+            break;
         default:
             http_response_code(400);
+            error_log('Unrecognized function to editorCallback');
             break;
     }
 }
