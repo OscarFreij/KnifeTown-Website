@@ -25,7 +25,7 @@ else
                 ?>
             </textarea>
         </div>
-        <div class="row my-34 col-12">
+        <div class="row my-3 col-12">
             <div class="col-12">
                 <button type="button" onClick="sendQuerry('contentAbout');" class="btn btn-success mb-3 col-12">
                     Spara ändringar
