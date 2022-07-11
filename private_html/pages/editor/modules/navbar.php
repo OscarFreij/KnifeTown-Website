@@ -10,10 +10,10 @@
                     <a class="nav-link <?php echo ($_GET['editorPage'] == 'general') ? 'active' : ''; ?>" href="?page=edit&editorPage=general">Generell Info</a>
                 </li>
                 <li class="nav-item text">
-                    <a class="nav-link <?php echo ($_GET['editorPage'] == 'openHours') ? 'active' : ''; ?>" href="?page=edit&editorPage=openHours">Öppettider</a>
+                    <a class="nav-link <?php echo ($_GET['editorPage'] == 'menu') ? 'active' : ''; ?>" href="?page=edit&editorPage=menu">Meny</a>
                 </li>
                 <li class="nav-item text">
-                    <a class="nav-link <?php echo ($_GET['editorPage'] == 'menu') ? 'active' : ''; ?>" href="?page=edit&editorPage=menu">Meny</a>
+                    <a class="nav-link <?php echo ($_GET['editorPage'] == 'openHours') ? 'active' : ''; ?>" href="?page=edit&editorPage=openHours">Öppettider</a>
                 </li>
                 <?php
                 if (isset($_SESSION['superAdmin']) && $_SESSION['superAdmin'] == 1)
