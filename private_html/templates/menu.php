@@ -10,7 +10,7 @@
             for ($j=0; $j < count($categoryRelationRecords); $j++) { 
                 $crr = $categoryRelationRecords[$j];
                 $category = $this->container->functions()->getCategory($crr['categoryId'])[0];
-                $this->container->functions()->createCategoryAccordion($category, $crr['id'], $menu['id']);
+                $this->container->functions()->displayCategoryAccordion($category, $crr['id'], $menu['id']);
             }
             
         }

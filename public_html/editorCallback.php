@@ -8,6 +8,11 @@ if (!isset($container))
     $container = new container();
 }
 
+if (isset($_POST['data']))
+{
+    $_POST['data'] = preg_replace('/[\x00-\x1F]/','', $_POST['data']);
+}
+
 if (isset($_POST['cba'])) //cba stands for CallBack Action
 {
     switch ($_POST['cba']) {
@@ -84,7 +89,7 @@ if (isset($_POST['cba'])) //cba stands for CallBack Action
             {
                 if (isset($_POST['data']))
                 {
-                    $success = $container->functions()->setOpeningStatesStandard(json_decode(($_POST['data'])));
+                    $success = $container->functions()->setOpeningStatesStandard(json_decode($_POST['data']));
                     if ($success)
                     {
                         http_response_code(202);
@@ -111,7 +116,7 @@ if (isset($_POST['cba'])) //cba stands for CallBack Action
             {
                 if (isset($_POST['data']))
                 {
-                    $success = $container->functions()->setOpeningStatesSpecial(json_decode(($_POST['data'])));
+                    $success = $container->functions()->setOpeningStatesSpecial(json_decode($_POST['data']));
                     if ($success)
                     {
                         http_response_code(202);
@@ -138,7 +143,7 @@ if (isset($_POST['cba'])) //cba stands for CallBack Action
             {
                 if (isset($_POST['data']))
                 {
-                    $success = $container->functions()->createOpeningStatesSpecial(json_decode(($_POST['data'])));
+                    $success = $container->functions()->createOpeningStatesSpecial(json_decode($_POST['data']));
                     if ($success)
                     {
                         http_response_code(202);
@@ -167,6 +172,252 @@ if (isset($_POST['cba'])) //cba stands for CallBack Action
                 if (isset($_POST['data']))
                 {
                     $success = $container->functions()->removeOpeningStatesSpecial($_POST['data']);
+                    if ($success)
+                    {
+                        http_response_code(202);
+                    }
+                    else
+                    {
+                        http_response_code(409);
+                    }
+                }
+                else
+                {
+                    http_response_code(400);
+                }
+                
+            }
+            else
+            {
+                http_response_code(401);
+            }
+            break;
+
+
+        case 'create_menu':
+            if (isset($_SESSION['username']))
+            {
+                if (isset($_POST['data']))
+                {
+                    $success = $container->functions()->createMenu(json_decode($_POST['data']));
+                    if ($success)
+                    {
+                        http_response_code(202);
+                    }
+                    else
+                    {
+                        http_response_code(409);
+                    }
+                }
+                else
+                {
+                    http_response_code(400);
+                }
+                
+            }
+            else
+            {
+                http_response_code(401);
+            }
+            break;
+
+        case 'set_menus':
+            if (isset($_SESSION['username']))
+            {
+                if (isset($_POST['data']))
+                {
+                    $success = $container->functions()->setMenus(json_decode($_POST['data']));
+                    if ($success)
+                    {
+                        http_response_code(202);
+                    }
+                    else
+                    {
+                        http_response_code(409);
+                    }
+                }
+                else
+                {
+                    http_response_code(400);
+                }
+                
+            }
+            else
+            {
+                http_response_code(401);
+            }
+            break;
+
+        case 'remove_menu':
+            if (isset($_SESSION['username']))
+            {
+                error_log("POST DATA: ".$_POST['data']);
+                if (isset($_POST['data']))
+                {
+                    $success = $container->functions()->removeMenu($_POST['data']);
+                    if ($success)
+                    {
+                        http_response_code(202);
+                    }
+                    else
+                    {
+                        http_response_code(409);
+                    }
+                }
+                else
+                {
+                    http_response_code(400);
+                }
+                
+            }
+            else
+            {
+                http_response_code(401);
+            }
+            break;
+
+        case 'create_category':
+            if (isset($_SESSION['username']))
+            {
+                if (isset($_POST['data']))
+                {
+                    $success = $container->functions()->createCategory(json_decode($_POST['data']));
+                    if ($success)
+                    {
+                        http_response_code(202);
+                    }
+                    else
+                    {
+                        http_response_code(409);
+                    }
+                }
+                else
+                {
+                    http_response_code(400);
+                }
+                
+            }
+            else
+            {
+                http_response_code(401);
+            }
+            break;
+    
+        case 'set_categories':
+            if (isset($_SESSION['username']))
+            {
+                if (isset($_POST['data']))
+                {
+                    $success = $container->functions()->setCategories(json_decode($_POST['data']));
+                    if ($success)
+                    {
+                        http_response_code(202);
+                    }
+                    else
+                    {
+                        http_response_code(409);
+                    }
+                }
+                else
+                {
+                    http_response_code(400);
+                }
+                
+            }
+            else
+            {
+                http_response_code(401);
+            }
+            break;
+        case 'remove_category':
+            if (isset($_SESSION['username']))
+            {
+                error_log("POST DATA: ".$_POST['data']);
+                if (isset($_POST['data']))
+                {
+                    $success = $container->functions()->removeCategory($_POST['data']);
+                    if ($success)
+                    {
+                        http_response_code(202);
+                    }
+                    else
+                    {
+                        http_response_code(409);
+                    }
+                }
+                else
+                {
+                    http_response_code(400);
+                }
+                
+            }
+            else
+            {
+                http_response_code(401);
+            }
+            break;
+        case 'create_menuItem':
+            if (isset($_SESSION['username']))
+            {
+                if (isset($_POST['data']))
+                {
+                    $success = $container->functions()->createMenuItem(json_decode($_POST['data']));
+                    if ($success)
+                    {
+                        http_response_code(202);
+                    }
+                    else
+                    {
+                        http_response_code(409);
+                    }
+                }
+                else
+                {
+                    http_response_code(400);
+                }
+                
+            }
+            else
+            {
+                http_response_code(401);
+            }
+            break;
+        
+        case 'set_menuItems':
+            if (isset($_SESSION['username']))
+            {
+                if (isset($_POST['data']))
+                {
+                    error_log($_POST['data']);
+                    $success = $container->functions()->setMenuItems(json_decode($_POST['data'],false,512,JSON_THROW_ON_ERROR));
+                    if ($success)
+                    {
+                        http_response_code(202);
+                    }
+                    else
+                    {
+                        http_response_code(409);
+                    }
+                }
+                else
+                {
+                    http_response_code(400);
+                }
+                
+            }
+            else
+            {
+                http_response_code(401);
+            }
+            break;
+
+        case 'remove_menuItem':
+            if (isset($_SESSION['username']))
+            {
+                error_log("POST DATA: ".$_POST['data']);
+                if (isset($_POST['data']))
+                {
+                    $success = $container->functions()->removeMenuItem($_POST['data']);
                     if ($success)
                     {
                         http_response_code(202);

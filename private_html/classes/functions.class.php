@@ -30,9 +30,176 @@ class functions
         {
             for ($i=0; $i < count($menues); $i++) { 
                 $menu = $menues[$i];
-                $this->createMenu($menu);
+                $this->displayMenu($menu);
             }
         }
+    }
+
+    public function getAllMenus()
+    {
+        $menues = $this->container->db()->constructResultQuerry('SELECT * FROM `menus` WHERE 1 ORDER BY `loadOrder` ASC;');
+        
+        if (count($menues) > 0)
+        {
+            for ($i=0; $i < count($menues); $i++) { 
+                $menu = $menues[$i];
+                $this->displayMenu2($menu);
+            }
+        }
+    }
+    
+    public function createMenu(array $data)
+    {
+        $success = false;
+        error_log(print_r($data,true));
+        for ($i=0; $i < count($data); $i++) { 
+            $element = $data[$i];
+
+            $success = $this->container->db()->constructQuerry('INSERT INTO `menus`(`name`, `loadOrder`, `enabled`) VALUES ('.$this->container->db()->quote($element->name).', '.$this->container->db()->quote($element->loadOrder).', '.$this->container->db()->quote($element->enabled).');');
+            if (!$success)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public function setMenus(array $data)
+    {
+        $success = false;
+        error_log(print_r($data,true));
+        for ($i=0; $i < count($data); $i++) { 
+            $element = $data[$i];
+            $success = $this->container->db()->constructQuerry('UPDATE `menus` SET `name`='.$this->container->db()->quote($element->name).',`loadOrder`='.$this->container->db()->quote($element->loadOrder).',`enabled`='.$this->container->db()->quote($element->enabled).' WHERE `id` = '.$element->id.';');
+            if (!$success)
+            {
+                return false;
+            }
+        }
+        return true;
+        
+    }
+
+    public function removeMenu($id)
+    {
+        return $this->container->db()->constructQuerry('DELETE FROM `menus` WHERE `id` = '.$id.';');
+    }
+
+    public function createCategory(array $data)
+    {
+        $success = false;
+        error_log(print_r($data,true));
+        for ($i=0; $i < count($data); $i++) { 
+            $element = $data[$i];
+
+            $success = $this->container->db()->constructQuerry('INSERT INTO `menuCategory`(`name`) VALUES ('.$this->container->db()->quote($element->name).');');
+            if (!$success)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public function setCategories(array $data)
+    {
+        $success = false;
+        error_log(print_r($data,true));
+        for ($i=0; $i < count($data); $i++) { 
+            $element = $data[$i];
+            $success = $this->container->db()->constructQuerry('UPDATE `menus` SET `name`='.$this->container->db()->quote($element->name).' WHERE `id` = '.$element->id.';');
+            if (!$success)
+            {
+                return false;
+            }
+        }
+        return true;
+        
+    }
+
+
+    public function removeCategory($id)
+    {
+        return $this->container->db()->constructQuerry('DELETE FROM `menuCategory` WHERE `id` = '.$id.';');
+    }
+
+
+    public function createMenuItem(array $data)
+    {
+        $success = false;
+        error_log(print_r($data,true));
+        for ($i=0; $i < count($data); $i++) { 
+            $element = $data[$i];
+
+            $hasImage = true;
+
+            if ($element->imageData == "")
+            {
+                $hasImage = false;
+            }
+            else
+            {
+                $hasImage = true;
+            }
+
+
+            
+            if (!$hasImage)
+            {
+                $success = $this->container->db()->constructQuerry('INSERT INTO `menuItems` (`name`, `description`, `price`) VALUES ('.$this->container->db()->quote($element->name).','.$this->container->db()->quote($element->description).','.$this->container->db()->quote($element->price).');');
+            }
+            else
+            {
+                $success = $this->container->db()->constructQuerry('INSERT INTO `menuItems` (`name`, `description`, `imageData`, `price`) VALUES ('.$this->container->db()->quote($element->name).','.$this->container->db()->quote($element->description).','.$this->container->db()->quote($element->imageData).','.$this->container->db()->quote($element->price).');');
+            }
+            if (!$success)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public function setMenuItems(array $data)
+    {
+        $success = false;
+        error_log(print_r($data,true));
+        for ($i=0; $i < count($data); $i++) { 
+            $element = $data[$i];
+
+            $hasImage = true;
+
+            if ($element->imageData == "")
+            {
+                $hasImage = false;
+            }
+            else
+            {
+                $hasImage = true;
+            }
+
+
+            
+            if (!$hasImage)
+            {
+                $success = $this->container->db()->constructQuerry('UPDATE `menuItems` SET `name`='.$this->container->db()->quote($element->name).',`description`='.$this->container->db()->quote($element->description).',`price`='.$this->container->db()->quote($element->price).' WHERE `id` = '.$element->id.';');
+            }
+            else
+            {
+                $success = $this->container->db()->constructQuerry('UPDATE `menuItems` SET `name`='.$this->container->db()->quote($element->name).',`description`='.$this->container->db()->quote($element->description).',`imageData`='.$this->container->db()->quote($element->imageData).',`price`='.$this->container->db()->quote($element->price).' WHERE `id` = '.$element->id.';');
+            }
+            if (!$success)
+            {
+                return false;
+            }
+        }
+        return true;
+        
+    }
+
+    public function removeMenuItem($id)
+    {
+        return $this->container->db()->constructQuerry('DELETE FROM `menuItems` WHERE `id` = '.$id.';');
     }
 
     public function getMenuCategoryRelationRecords(int $id, int $enabled = 1)
@@ -50,29 +217,77 @@ class functions
         return $this->container->db()->constructResultQuerry('SELECT * FROM `menuCategory` WHERE `id` = '.$id.';');
     }
 
+    public function getAllCategories()
+    {
+        $categories = $this->container->db()->constructResultQuerry('SELECT * FROM `menuCategory` WHERE 1 ORDER BY `name` ASC;');
+        
+        if (count($categories) > 0)
+        {
+            for ($i=0; $i < count($categories); $i++) { 
+                $category = $categories[$i];
+                $this->displayCategory2($category);
+            }
+        }
+    }
+
     public function getMenuItem(int $id)
     {
         return $this->container->db()->constructResultQuerry('SELECT * FROM `menuItems` WHERE `id` = '.$id.';');
     }
 
-    public function createMenu(array $menu)
+    public function getAllMenuItems()
+    {
+        $items = $this->container->db()->constructResultQuerry('SELECT * FROM `menuItems` WHERE 1 ORDER BY `id` ASC;');
+        
+        if (count($items) > 0)
+        {
+            for ($i=0; $i < count($items); $i++) { 
+                $item = $items[$i];
+                $this->displayCategoryItem2($item);
+            }
+        }
+    }
+
+    public function displayMenu(array $menu)
     {
         require "../private_html/templates/menu.php";
     }
 
-    public function createCategory(array $category, int $crrId, int $menuId)
+    public function displayMenu2(array $menu)
+    {
+        $menuId = $menu['id'];
+        $menuName = $menu['name'];
+        $menuLoadOrder = $menu['loadOrder'];
+        $menuEnabled = $menu['enabled'];
+        
+        require "../private_html/templates/editorMenuListItem.php";
+    }
+
+    public function displayCategory2(array $category)
+    {
+        $categoryId = $category['id'];
+        $categoryName = $category['name'];
+
+        require "../private_html/templates/editorMenuCategoryListItem.php";
+    }
+
+    public function displayCategory(array $category, int $crrId, int $menuId)
     {
         require "../private_html/templates/menuCategory.php";
     }
 
-    public function createCategoryItem(array $item)
+    public function displayCategoryItem(array $item)
     {
         require "../private_html/templates/menuCategoryItem.php";
     }
-
-    public function createCategoryAccordion(array $category, int $crrId, int $menuId)
+    public function displayCategoryItem2(array $item)
     {
-        $this->createCategory($category, $crrId, $menuId);
+        require "../private_html/templates/editorMenuCategoryItemCard.php";
+    }
+
+    public function displayCategoryAccordion(array $category, int $crrId, int $menuId)
+    {
+        $this->displayCategory($category, $crrId, $menuId);
     }
     #endregion
     

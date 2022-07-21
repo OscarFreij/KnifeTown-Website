@@ -73,7 +73,7 @@ function saveSpecial()
         {
             console.log(element);
             var id = element.id.substring(element.id.indexOf('w')+1);
-            var name = document.getElementById(element.id+'name').value;
+            var name = encodeURIComponent(document.getElementById(element.id+'name').value);
             var startTime = document.getElementById(element.id+'startTime').value;
             var stopTime = document.getElementById(element.id+'stopTime').value;
             var date = document.getElementById(element.id+'date').value;
@@ -90,7 +90,7 @@ function saveSpecial()
 function createSpecial()
 {
     var array = Array();
-    var name = document.getElementById('inputName').value;
+    var name = encodeURIComponent(document.getElementById('inputName').value);
     var startTime = document.getElementById('inputOpenTime').value;
     var stopTime = document.getElementById('inputCloseTime').value;
     var date = document.getElementById('inputDate').value;

@@ -16,7 +16,7 @@
             else
             {
                 ?>
-                <img class="card-img-top menuCategoryItem-picture" src="<?=$item['imageData']?>" alt="pictue of product">
+                <img class="card-img-top menuCategoryItem-picture" src="<?=urldecode(base64_decode($item['imageData']))?>" alt="pictue of product">
                 <?php
             }
         ?>

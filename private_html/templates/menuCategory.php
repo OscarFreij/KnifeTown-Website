@@ -14,7 +14,7 @@
                 {
                     for ($k=0; $k < count($cirr); $k++) { 
                         $item = $this->container->functions()->getMenuItem($cirr[$k]['itemId'])[0];
-                        $this->container->functions()->createCategoryItem($item);
+                        $this->container->functions()->displayCategoryItem($item);
                     }
                 }
                 ?>
