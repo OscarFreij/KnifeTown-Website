@@ -21,6 +21,17 @@ if (isset($_GET['editorPage']))
             require_once "../private_html/pages/editor/modules/navbar.php";
             require "../private_html/pages/editor/pages/openHours.php";
             break;
+        case 'menuBuilder':
+            require_once "../private_html/pages/editor/modules/navbar.php";
+            if (isset($_GET['menuId']))
+            {
+                require "../private_html/pages/editor/pages/menuBuilder.php";
+            }
+            else
+            {
+                http_response_code(404);
+            }
+            break;
         case 'admin':
             require_once "../private_html/pages/editor/modules/navbar.php";
             require "../private_html/pages/editor/pages/admin.php";

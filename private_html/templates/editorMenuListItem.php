@@ -19,6 +19,6 @@
             ?>
         </div>
     </div>
-    <button class="col-sm-2 col-6 btn btn-warning">Redigera</button>
+    <a class="col-sm-2 col-6 btn btn-warning" href="?page=edit&editorPage=menuBuilder&menuId=<?=$menuId?>">Redigera</a>
     <button class="col-sm-2 col-6 btn btn-danger" onclick="removeMenu(<?=$menuId?>);">Ta bort</button>
 </li>
