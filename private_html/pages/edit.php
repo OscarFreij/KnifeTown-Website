@@ -1,5 +1,11 @@
 <?php
-if (isset($_GET['editorPage']))
+
+if (!isset($_SESSION['username'])) {
+    require "../private_html/pages/editor/pages/login.php";
+}
+else
+{
+    if (isset($_GET['editorPage']))
 {
     switch ($_GET['editorPage'])
     {
@@ -45,6 +51,8 @@ else
 {
     require "../private_html/pages/editor/pages/login.php";
 }
+}
+
 
 if (http_response_code() != 200)
 {
