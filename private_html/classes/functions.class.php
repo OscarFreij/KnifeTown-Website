@@ -47,6 +47,20 @@ class functions
             }
         }
     }
+
+    public function getMenuName($id)
+    {
+        $menu = $this->container->db()->constructResultQuerry('SELECT `name` FROM `menus` WHERE `id` = '.$id.';');
+        
+        if (count($menu) > 0)
+        {
+            return $menu[0]['name'];
+        }
+        else
+        {
+            return false;
+        }
+    }
     
     public function createMenu(array $data)
     {
@@ -107,7 +121,7 @@ class functions
         error_log(print_r($data,true));
         for ($i=0; $i < count($data); $i++) { 
             $element = $data[$i];
-            $success = $this->container->db()->constructQuerry('UPDATE `menus` SET `name`='.$this->container->db()->quote($element->name).' WHERE `id` = '.$element->id.';');
+            $success = $this->container->db()->constructQuerry('UPDATE `menuCategory` SET `name`='.$this->container->db()->quote($element->name).' WHERE `id` = '.$element->id.';');
             if (!$success)
             {
                 return false;
@@ -204,12 +218,22 @@ class functions
 
     public function getMenuCategoryRelationRecords(int $id, int $enabled = 1)
     {
-        return $this->container->db()->constructResultQuerry('SELECT * FROM `menuCategoryRelations` WHERE `enabled` = '.$enabled.' AND `menuId` = '.$id.' ORDER BY  `loadOrder` ASC;');
+        return $this->container->db()->constructResultQuerry('SELECT * FROM `menuCategoryRelations` WHERE `menuId` = '.$id.' ORDER BY  `loadOrder` ASC;');
+    }
+
+    public function getAllMenuCategoryRelationRecords(int $id)
+    {
+        return $this->container->db()->constructResultQuerry('SELECT * FROM `menuCategoryRelations` WHERE `menuId` = '.$id.' ORDER BY  `loadOrder` ASC;');
     }
 
     public function getMenuCategoryItemRelationRecords(int $id, int $enabled = 1)
     {
         return $this->container->db()->constructResultQuerry('SELECT * FROM `menuCategoryItemRelations` WHERE `enabled` = '.$enabled.' AND `categoryRelationRecordId` = '.$id.' ORDER BY  `loadOrder` ASC;');
+    }
+
+    public function getAllMenuCategoryItemRelationRecords(int $id)
+    {
+        return $this->container->db()->constructResultQuerry('SELECT * FROM `menuCategoryItemRelations` WHERE `categoryRelationRecordId` = '.$id.' ORDER BY  `loadOrder` ASC;');
     }
 
     public function getCategory(int $id)
