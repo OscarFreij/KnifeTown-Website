@@ -22,7 +22,7 @@ if (isset($_SESSION['username'])) {
         </div>
     </div>
     <div class="mb-3 row">
-        <button type="button" class="btn btn-primary" onclick="sendQuerry()">Sign In</button>
+        <button type="button" class="btn btn-primary" onclick="sendSigninQuerry()">Sign In</button>
     </div>
 </div>
 

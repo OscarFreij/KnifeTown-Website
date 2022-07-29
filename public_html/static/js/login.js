@@ -1,4 +1,4 @@
-function sendQuerry() {
+function sendSigninQuerry() {
     var u = document.getElementById('username').value;
     var p = document.getElementById('password').value;
 
