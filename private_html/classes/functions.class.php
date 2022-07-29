@@ -945,6 +945,18 @@ class functions
         return $success;
     }
 
+    private function changePasswordForce(string $username, string $passwordNew)
+    {
+        //Warning. Access check needs to be done outside of this function!
+        $success = false;
+        
+        $quotedUsername = $this->container->db()->quote($username);
+        $quotedPasswordNewHASH = $this->container->db()->quote(password_hash($passwordNew, PASSWORD_DEFAULT));
+        $success = $this->container->db()->constructQuerry("UPDATE `users` SET `password`=$quotedPasswordNewHASH WHERE `username` = $quotedUsername;");
+        
+        return $success;
+    }
+
     public function createAccount(string $username, string $password)
     {
         if (!$this->checkUserExists($username))
@@ -983,6 +995,12 @@ class functions
         return $this->container->db()->constructResultQuerry("SELECT `id`, `superAdmin`, `enabled` FROM `users` WHERE username = $quotedUsername;");
     }
 
+    public function getAllUsers()
+    {
+        //Warning. Access check needs to be done outside of this function!
+        return $this->container->db()->constructResultQuerry("SELECT `id`, `username`, `superAdmin`, `enabled` FROM `users` WHERE 1;");
+    }
+
     private function checkUserExists(string $username)
     {
         $quotedUsername = $this->container->db()->quote($username);
@@ -998,6 +1016,7 @@ class functions
 
     public function toggleUserEnabled(string $username)
     {
+        //Warning. Access check needs to be done outside of this function!
         $quotedUsername = $this->container->db()->quote($username);
         $result = $this->getUserData($username);
 
@@ -1008,6 +1027,32 @@ class functions
         else
         {
             $success = $this->container->db()->constructQuerry("UPDATE `users` SET `enabled` = 0 WHERE `username` = $quotedUsername;");
+        }
+        return $success;
+    }
+
+    public function updateUsers(array $data)
+    {
+        //Warning. Access check needs to be done outside of this function!
+        
+
+        $success = false;
+        for ($i=0; $i < count($data); $i++) { 
+            $element = $data[$i];
+            
+            if ($element->password != "")
+            {
+                $this->changePasswordForce($element->username, $element->password);
+            }
+            
+            $quotedUsername = $this->container->db()->quote($element->username);
+            $quotedSuperAdmin = $this->container->db()->quote($element->superAdmin);
+            $quotedEnabled = $this->container->db()->quote($element->enabled);
+            $success = $this->container->db()->constructQuerry("UPDATE `users` SET `enabled` = $quotedEnabled, `superAdmin` = $quotedSuperAdmin WHERE `username` = $quotedUsername;");
+            if (!$success)
+            {
+                return false;
+            }
         }
         return $success;
     }

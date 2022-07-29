@@ -31,11 +31,94 @@ if (isset($_POST['cba'])) //cba stands for CallBack Action
             }
             break;
         case 'create_user':
+            if (isset($_POST['data']))
+            {
+                if (isset($_SESSION['superAdmin']) && $_SESSION['superAdmin'] == 1)
+                {
+                    $username = json_decode($_POST['data'])[0]->username;
+                    $password = json_decode($_POST['data'])[0]->password;
+                    $success = $container->functions()->createAccount($username, $password);
+                    if ($success)
+                    {
+                        http_response_code(201);
+                    }
+                    else
+                    {
+                        http_response_code(409);
+                    }
+                }
+                else
+                {
+                    http_response_code(401);
+                }
+                
+            }
+            else
+            {
+                http_response_code(400);
+            }
+            break;
+
+        case 'change_password_force':
             if (isset($_POST['username']) && isset($_POST['password']))
             {
                 if (isset($_SESSION['superAdmin']) && $_SESSION['superAdmin'] == 1)
                 {
                     $success = $container->functions()->createAccount($_POST['username'], $_POST['password']);
+                    if ($success)
+                    {
+                        http_response_code(201);
+                    }
+                    else
+                    {
+                        http_response_code(409);
+                    }
+                }
+                else
+                {
+                    http_response_code(401);
+                }
+                
+            }
+            else
+            {
+                http_response_code(400);
+            }
+            break;
+
+        case 'delete_user':
+            if (isset($_POST['data']))
+            {
+                if (isset($_SESSION['superAdmin']) && $_SESSION['superAdmin'] == 1)
+                {
+                    $username = json_decode($_POST['data'])[0]->username;
+                    $success = $container->functions()->deleteAccount($username);
+                    if ($success)
+                    {
+                        http_response_code(201);
+                    }
+                    else
+                    {
+                        http_response_code(409);
+                    }
+                }
+                else
+                {
+                    http_response_code(401);
+                }
+                
+            }
+            else
+            {
+                http_response_code(400);
+            }
+            break;
+        case 'update_users':
+            if (isset($_POST['data']))
+            {
+                if (isset($_SESSION['superAdmin']) && $_SESSION['superAdmin'] == 1)
+                {
+                    $success = $container->functions()->updateUsers(json_decode($_POST['data']));
                     if ($success)
                     {
                         http_response_code(201);
