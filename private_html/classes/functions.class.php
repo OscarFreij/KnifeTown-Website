@@ -223,13 +223,73 @@ class functions
 
     public function getAllMenuCategoryRelationRecords(int $id)
     {
-        return $this->container->db()->constructResultQuerry('SELECT * FROM `menuCategoryRelations` WHERE `menuId` = '.$id.' ORDER BY  `loadOrder` ASC;');
+        return $this->getMenuCategoryRelationRecords($id);
     }
 
     public function getMenuCategoryItemRelationRecords(int $id, int $enabled = 1)
     {
         return $this->container->db()->constructResultQuerry('SELECT * FROM `menuCategoryItemRelations` WHERE `enabled` = '.$enabled.' AND `categoryRelationRecordId` = '.$id.' ORDER BY  `loadOrder` ASC;');
     }
+
+    public function setMenuCategoryItemRelationRecords(array $data)
+    {
+        $success = false;
+        error_log(print_r($data,true));
+        
+        $element = $data[0];
+        $success = $this->container->db()->constructQuerry('UPDATE `menuCategoryRelations` SET `loadOrder`='.$this->container->db()->quote($element->loadOrder).' WHERE `id` = '.$element->id.';');
+
+        if (!$success)
+        {
+            return false;
+        }
+
+        for ($i=1; $i < count($data); $i++) { 
+            $element = $data[$i];
+            $success = $this->container->db()->constructQuerry('UPDATE `menuCategoryItemRelations` SET `loadOrder`='.$this->container->db()->quote($element->loadOrder).',`enabled`='.$this->container->db()->quote($element->enabled).' WHERE `id` = '.$element->id.';');
+            if (!$success)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public function addMenuCategoryItemRelationRecords(array $data)
+    {
+        $success = false;
+        error_log(print_r($data,true));
+        
+        $element = $data[0];
+        $success = $this->container->db()->constructQuerry('INSERT INTO `menuCategoryItemRelations`(`categoryRelationRecordId`, `itemId`) VALUES ('.$this->container->db()->quote($element->menuCategoryItemRelations).','.$this->container->db()->quote($element->itemId).');');
+
+        if (!$success)
+        {
+            return false;
+        }
+        return true;
+    }
+
+    public function addMenuCategoryRelationRecords(array $data)
+    {
+        $success = false;
+        error_log(print_r($data,true));
+        
+        $element = $data[0];
+        $success = $this->container->db()->constructQuerry('INSERT INTO `menuCategoryRelations`(`menuId`, `categoryId`) VALUES ('.$this->container->db()->quote($element->menuId).','.$this->container->db()->quote($element->categoryId).');');
+
+        if (!$success)
+        {
+            return false;
+        }
+        return true;
+    }
+
+    public function removeMenuCategoryRelationRecords($id)
+    {
+        return $this->container->db()->constructQuerry('DELETE FROM `menuCategoryRelations` WHERE `id` = '.$id.';');
+    }
+    
 
     public function getAllMenuCategoryItemRelationRecords(int $id)
     {
@@ -254,6 +314,20 @@ class functions
         }
     }
 
+    public function getAllCategories2()
+    {
+        $categories = $this->container->db()->constructResultQuerry('SELECT * FROM `menuCategory` WHERE 1 ORDER BY `name` ASC;');
+        
+        if (count($categories) > 0)
+        {
+            return $categories;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     public function getMenuItem(int $id)
     {
         return $this->container->db()->constructResultQuerry('SELECT * FROM `menuItems` WHERE `id` = '.$id.';');
@@ -269,6 +343,20 @@ class functions
                 $item = $items[$i];
                 $this->displayCategoryItem2($item);
             }
+        }
+    }
+
+    public function getAllMenuItems2()
+    {
+        $items = $this->container->db()->constructResultQuerry('SELECT * FROM `menuItems` WHERE 1 ORDER BY `id` ASC;');
+        
+        if (count($items) > 0)
+        {
+            return $items;
+        }
+        else
+        {
+            return false;
         }
     }
 

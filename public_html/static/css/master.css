@@ -20,3 +20,9 @@ body {
 .dropdown-item {
     pointer-events: none;    
 }
+
+.no-padding-w
+{
+    padding-right: 0;
+    padding-left: 0;
+}

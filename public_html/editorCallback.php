@@ -438,6 +438,117 @@ if (isset($_POST['cba'])) //cba stands for CallBack Action
                 http_response_code(401);
             }
             break;
+        case 'set_categoryRelationRecord':
+            if (isset($_SESSION['username']))
+            {
+                error_log("POST DATA: ".$_POST['data']);
+                if (isset($_POST['data']))
+                {
+                    $success = $container->functions()->setMenuCategoryItemRelationRecords(json_decode($_POST['data']));
+                    if ($success)
+                    {
+                        http_response_code(202);
+                    }
+                    else
+                    {
+                        http_response_code(409);
+                    }
+                }
+                else
+                {
+                    http_response_code(400);
+                }
+                
+            }
+            else
+            {
+                http_response_code(401);
+            }
+            break;
+
+        case 'add_categoryRelationRecord':
+            if (isset($_SESSION['username']))
+            {
+                error_log("POST DATA: ".$_POST['data']);
+                if (isset($_POST['data']))
+                {
+                    $success = $container->functions()->addMenuCategoryRelationRecords(json_decode($_POST['data']));
+                    if ($success)
+                    {
+                        http_response_code(202);
+                    }
+                    else
+                    {
+                        http_response_code(409);
+                    }
+                }
+                else
+                {
+                    http_response_code(400);
+                }
+                
+            }
+            else
+            {
+                http_response_code(401);
+            }
+            break;
+
+        case 'remove_categoryRelationRecord':
+            if (isset($_SESSION['username']))
+            {
+                error_log("POST DATA: ".$_POST['data']);
+                if (isset($_POST['data']))
+                {
+                    $success = $container->functions()->removeMenuCategoryRelationRecords($_POST['data']);
+                    if ($success)
+                    {
+                        http_response_code(202);
+                    }
+                    else
+                    {
+                        http_response_code(409);
+                    }
+                }
+                else
+                {
+                    http_response_code(400);
+                }
+                
+            }
+            else
+            {
+                http_response_code(401);
+            }
+            break;
+            
+        case 'add_categoryItemRelationRecord':
+            if (isset($_SESSION['username']))
+            {
+                error_log("POST DATA: ".$_POST['data']);
+                if (isset($_POST['data']))
+                {
+                    $success = $container->functions()->addMenuCategoryItemRelationRecords(json_decode($_POST['data']));
+                    if ($success)
+                    {
+                        http_response_code(202);
+                    }
+                    else
+                    {
+                        http_response_code(409);
+                    }
+                }
+                else
+                {
+                    http_response_code(400);
+                }
+                
+            }
+            else
+            {
+                http_response_code(401);
+            }
+            break;
         default:
             http_response_code(400);
             error_log('Unrecognized function to editorCallback');
