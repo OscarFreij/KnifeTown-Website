@@ -8,7 +8,7 @@
                     ?>
                 </span>
                 <span class="navbar-text col-12 col-md-4 text-md-end text-center">
-                    Knifetown Burgers &COPY; 2022
+                    Knifetown Burgers <a style="text-decoration:none;" href="?page=edit">&COPY;</a> 2022
                 </span>
             </div>
         </nav>
