@@ -452,11 +452,11 @@ class functions
     
             if ($isOpen)
             {
-                echo("Öppen mellan: ".date('H:i:s', $date2)." -> ".date('H:i:s', $date3));
+                echo("Öppen mellan: ".date('H:i', $date2)." -> ".date('H:i', $date3));
             }
             else if ($isPre)
             {
-                echo("Öppnar vid: ".date('H:i:s', $date2));
+                echo("Öppnar vid: ".date('H:i', $date2));
             }
             else if ($isPost)
             {
@@ -507,7 +507,7 @@ class functions
 
                 if (isset($row['openTime']) && isset($row['closeTime']))
                 {
-                    $timeSpanString = $row['openTime']." -> ".$row['closeTime'];
+                    $timeSpanString = substr($row['openTime'],0,-3)." -> ".substr($row['closeTime'],0,-3);
                 }
                 
                 if (date('N') == $row['day'] && !$todayIsSpecial)
@@ -566,7 +566,7 @@ class functions
 
                 if (isset($row['openTime']) && isset($row['closeTime']))
                 {
-                    $timeSpanString = $row['openTime']." -> ".$row['closeTime'];
+                    $timeSpanString = substr($row['openTime'],0,-3)." -> ".substr($row['closeTime'],0,-3);
                 }
                 
 
