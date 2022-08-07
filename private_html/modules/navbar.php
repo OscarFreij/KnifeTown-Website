@@ -1,6 +1,8 @@
 <nav class="navbar navbar-expand-xl sticky-top navbar-dark bg-dark" style="z-index:1040 !important;">
 <div class="container-fluid">
-    <a class="navbar-brand w-50" href="/">Knifetown Burgers</a>
+    <a class="navbar-brand w-50" href="/">
+      <img src="static/media/images/logo.png" alt="Knifetown Burgers" width="100" height="100">
+    </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>

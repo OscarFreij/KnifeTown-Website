@@ -2,13 +2,9 @@ body {
     margin: 0;
 }
 
-.banner {
-    height: 128px;
-    width: 100%;
-    background-image: url("../media/images/banner.png");
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position-x: center;
+.navbar-brand
+{
+    margin-left: auto;
 }
 
 .menuCategoryItem-picture
