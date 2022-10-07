@@ -91,7 +91,7 @@
             <div class="mb-3 row">
                 <label for="inputPriceItem" class="col-sm-4 col-form-label">Pris</label>
                 <div class="col-sm-8">
-                    <input type="number" class="form-control" id="inputPriceItem" value="0">
+                    <input type="text" class="form-control" id="inputPriceItem" value="0">
                 </div>
             </div>
         </div>

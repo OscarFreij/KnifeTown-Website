@@ -108,7 +108,7 @@ function removeItem(item)
     var parrentParrent = item.parentElement.parentElement;
     var removalRow = item;
     removalRow.parentElement.removeChild(removalRow);
-    sendQuerry('remove_categoryRelationRecord', id, parrentParrent);
+    sendQuerry('remove_categoryItemRelationRecord', id, parrentParrent);
 }
 
 function addItem()
