@@ -270,6 +270,11 @@ class functions
         return true;
     }
 
+    public function removeMenuCategoryItemRelationRecords($id)
+    {
+        return $this->container->db()->constructQuerry('DELETE FROM `menuCategoryItemRelations` WHERE `id` = '.$id.';');
+    }
+
     public function addMenuCategoryRelationRecords(array $data)
     {
         $success = false;
