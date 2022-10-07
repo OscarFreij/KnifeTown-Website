@@ -39,7 +39,7 @@
             <div class="mb-3 row">
                 <label for="item<?= $item['id'] ?>price" class="col-sm-4 col-form-label">Pris</label>
                 <div class="col-sm-8">
-                    <input type="number" class="form-control" id="item<?= $item['id'] ?>price" value="<?= $item['price'] ?>">
+                    <input type="text" class="form-control" id="item<?= $item['id'] ?>price" value="<?= $item['price'] ?>">
                 </div>
             </div>
             <button type="button" onClick="removeItem(<?= $item['id'] ?>);" class="btn btn-danger col-12">
