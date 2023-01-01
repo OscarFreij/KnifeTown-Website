@@ -9,7 +9,7 @@ else if ($_SESSION['superAdmin'] == 0)
 else
 {
     ?>
-    <div class="container">
+    <div class="container text-light">
         <div class="row my-3">
             <span class="fs-1 text-center text">
                 Admin

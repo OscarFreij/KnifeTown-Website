@@ -1,4 +1,4 @@
-<div class="col">
+<div class="col text-dark">
     <div class="card h-100">
         <?php
             if (is_null($item['imageData']))

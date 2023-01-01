@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container text-light">
 <div class="row my-3">
         <span class="fs-1 text-center text">
             Menu Builder
