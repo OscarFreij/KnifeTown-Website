@@ -1,4 +1,9 @@
-<div class="container py-5">
+<div class="container pb-5 text-light">
+    <header class="row my-3">
+        <span class="fs-1 text-center text">
+            Välkommen till Knifetown Burgers
+        </span>
+    </header>
     <div class="row row-cols-1 row-cols-md-2 g-4">
         <div class="col">
             <div class="card h-100">

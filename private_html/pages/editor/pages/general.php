@@ -6,7 +6,7 @@ else
 {
     ?>
 
-    <div class="container">
+    <div class="container text-light">
         <div class="row my-3 col-12">
             <span class="fs-1 text-center text">
                 Generel Information

@@ -1,9 +1,9 @@
-<div class="container">
-    <div class="row my-3">
+<div class="container text-light">
+    <header class="row my-3">
         <span class="fs-1 text-center text">
             Hitta oss!
         </span>
-    </div>
+    </header>
     <div class="row">
         <div class="container col-12 col-md-6">
             <span class="fs-4 text">

@@ -1,4 +1,4 @@
-<div class="container text-center">
+<div class="container text-center text-light">
     <div class="row">
         <span class="text fs-1">500</span>
     </div>
