@@ -11,7 +11,7 @@ body {
     /* Firefox */
 
     margin: 0;
-    background-image: url("/static/media/images/bg.png");
+    background-image: url("/static/media/images/bg.jpg");
     background-position: center;
     background-repeat: repeat-y;
     background-size: cover;
