@@ -417,14 +417,13 @@ class functions
         $isPost = false;
 
 
-        $data2 = $this->container->db()->constructResultQuerry('SELECT * FROM `openingHours` WHERE `specialDate` = CURDATE();');
-
-        if (count($data2) > 0)
+        $dataSpecial = $this->container->db()->constructResultQuerry('SELECT * FROM `openingHours` WHERE `specialDate` = CURDATE();');
+        if (count($dataSpecial) > 0)
         {
-            $data = $data2[0];
-            $u1 = strtotime(date('Y-n-J')." ".$data['closeTime']);
-            $u2 = strtotime(date('Y-n-J')." ".$data['openTime']);
-        
+            $data = $dataSpecial[0];
+            $u1 = strtotime(date('Y-n-j')." ".$data['closeTime']);
+            $u2 = strtotime(date('Y-n-j')." ".$data['openTime']);
+            
             if (($u1 - $u2) <= 0)
             {
                 $timeSpan = date_create(($data['specialDate']." ".$data['closeTime']))->modify('+1 day');
