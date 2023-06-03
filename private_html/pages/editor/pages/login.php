@@ -4,7 +4,7 @@ if (isset($_SESSION['username'])) {
 }
 ?>
 
-<div id="login-container" class="container pt-5 px-5">
+<div id="login-container" class="container pt-5 px-5 text-light">
     <div class="mb-5 row position-relative">
     <!--Banner position-->
     <span class="w-100 fs-1 text text-center">Editor</span>
