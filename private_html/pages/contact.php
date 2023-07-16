@@ -6,9 +6,19 @@
     </div>
     <div class="row">
         <span class="fs-4 text-center text my-3">
-                Skriv ditt meddelande och kontaktuppgifter nedan så hör vi av oss så snart vi kan :)
-            </span>
+            Skriv ditt meddelande och kontaktuppgifter nedan så hör vi av oss så snart vi kan :)
+        </span>
+        <span class="fs-4 text-center text my-3">
+            Dagliga beställningar ska inte skickas genom detta formulär utan ring på <a href="tel:+46737815366">+46737815366</a>.
+        </span>
         <form class="container">
+            <div class="mb-3">
+                <label for="type" class="form-label">Typ av meddelande (Krävs)</label>
+                <select class="form-select" aria-label="Default select example" id="type" name="type" require>
+                    <option value="1">Vanlig fråga</option>
+                    <option value="2">Tekniskt fel</option>
+                </select>
+            </div>
             <div class="mb-3">
                 <label for="email" class="form-label">Mejladress (Krävs)</label>
                 <input type="email" class="form-control" id="email" placeholder="name@domain.com" require>
