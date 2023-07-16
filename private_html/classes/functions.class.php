@@ -815,11 +815,28 @@ class functions
     {
         $credArray = $this->container->credentials()->getMailCredentials();
         $to = $data['email'];
-        $reciver = $credArray['oauthUserEmail'];
+
+        if ($data['type'] == 1)
+        {
+            $reciver = $credArray['oauthUserEmail'];    
+        }
+        else if ($data['type'] == 2)
+        {
+            $reciver = $credArray['oauthUserEmail'];
+            //$reciver = "otg020313@gmail.com";
+        }
         $phone = $data['phone'];
         #$msg = $data['msg'];
 
-        $subject = "Meddelande från ".substr($credArray['oauthUserEmail'], 0, strpos($credArray['oauthUserEmail'], '.') ).".knifetownburgers.se :-)";
+        if ($data['type'] == 1)
+        {
+            $subject = "Meddelande från ".substr($credArray['oauthUserEmail'], 0, strpos($credArray['oauthUserEmail'], '.') ).".knifetownburgers.se :-)";
+        }
+        else if ($data['type'] == 2)
+        {
+            $subject = "Tekniskt fel på knifetownburgers.se";
+        }
+        
 
         #TEMPORARY#
 
