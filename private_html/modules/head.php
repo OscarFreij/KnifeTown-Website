@@ -13,7 +13,12 @@
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
 
-        gtag('config', 'G-BPBXRY2LJ6');
+        gtag(
+            'config',
+            'G-BPBXRY2LJ6',
+            {
+                'page_location' : location.href
+            });
     </script>
 
     <!-- CSS -->
