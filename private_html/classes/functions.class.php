@@ -818,7 +818,7 @@ class functions
 
         if ($data['type'] == 1)
         {
-            $reciver = $credArray['oauthUserEmail'];    
+            $reciver = $credArray['emailReceivers'];    
         }
         else if ($data['type'] == 2)
         {
@@ -830,7 +830,7 @@ class functions
 
         if ($data['type'] == 1)
         {
-            $subject = "Meddelande från ".substr($credArray['oauthUserEmail'], 0, strpos($credArray['oauthUserEmail'], '.') ).".knifetownburgers.se :-)";
+            $subject = "Meddelande från knifetownburgers.se :-)";
         }
         else if ($data['type'] == 2)
         {
