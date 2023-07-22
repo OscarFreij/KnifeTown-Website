@@ -8,10 +8,10 @@
                     ?>
                 </span>
                 <span class="navbar-text col-12 col-md-4 text-center fs-3">
-                    <a class="me-2" href="https://www.instagram.com/knifetownburgers/" style="text-decoration:none">
+                    <a class="me-2 ext-link-instagram" href="https://www.instagram.com/knifetownburgers/" style="text-decoration:none">
                         <i class="bi bi-instagram"></i>
                     </a>
-                    <a class="ms-2" href="https://www.facebook.com/profile.php?id=100063505151036" style="text-decoration:none">
+                    <a class="ms-2 ext-link-facebook" href="https://www.facebook.com/profile.php?id=100063505151036" style="text-decoration:none">
                         <i class="bi bi-facebook"></i>
                     </a>
                 </span>

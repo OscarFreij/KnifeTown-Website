@@ -32,7 +32,7 @@
                 <textarea class="form-control" id="message" rows="5"></textarea>
             </div>
             <div class="col-12">
-                <button type="button" onclick="sendMessage()" class="btn btn-success mb-3 col-12">Skicka meddelande!</button>
+                <button id="send-contact-form" type="button" onclick="sendMessage()" class="btn btn-success mb-3 col-12">Skicka meddelande!</button>
             </div>
     </form>
     </div>
