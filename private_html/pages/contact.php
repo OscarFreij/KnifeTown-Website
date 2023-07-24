@@ -11,7 +11,7 @@
         <span class="fs-4 text-center text my-3">
             Dagliga beställningar ska inte skickas genom detta formulär utan ring på <a href="tel:+46737815366">+46737815366</a>.
         </span>
-        <form class="container">
+        <form class="container" id="mainContactForm" name="contactForm" onsubmit="event.preventDefault(); sendMessage();">
             <div class="mb-3">
                 <label for="type" class="form-label">Typ av meddelande (Krävs)</label>
                 <select class="form-select" aria-label="Default select example" id="type" name="type" require>
@@ -32,7 +32,7 @@
                 <textarea class="form-control" id="message" rows="5"></textarea>
             </div>
             <div class="col-12">
-                <button id="send-contact-form" type="button" onclick="sendMessage()" class="btn btn-success mb-3 col-12">Skicka meddelande!</button>
+                <button id="send-contact-form" type="submit" class="btn btn-success mb-3 col-12">Skicka meddelande!</button>
             </div>
     </form>
     </div>
