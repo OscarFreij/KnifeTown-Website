@@ -8,7 +8,6 @@ function sendMessage()
         $d4 = document.querySelector("#type").value;
         $.post( "callback.php", { email: $d1, phone: $d2, message: $d3 , type: $d4} );
         alert("Meddelandet är nu skickat till oss!");
-        location.reload();
     }
     else
     {
