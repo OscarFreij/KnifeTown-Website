@@ -59,6 +59,7 @@
                 {
                     ?>
                 <link rel="stylesheet" href="static/css/edit<?=$_GET['editorPage']?>.css">
+                <meta name="robots" content="noindex">
                 <?php
                 }
             }
