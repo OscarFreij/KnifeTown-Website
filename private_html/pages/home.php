@@ -4,15 +4,17 @@
             Välkommen till Knifetown Burgers
         </span>
     </header>
-    <!--
+    
     <div class="row my-3 justify-content-center">
-        <a class="fs-4 text-center text btn btn-success mt-2 col-12 online-order-btn" href="https://qopla.com/restaurant/knifetown-burgers-/qQALLpRyEO/order">
-            Är du hungrig och vill beställa?
-            <br>
-            Klicka här!
-        </a>
+        <div class="col">
+            <a class="fs-4 text-center text btn btn-success mt-2 col-12 online-order-btn" href="https://qopla.com/restaurant/knifetown-burgers-/qQALLpRyEO/order">
+                Är du hungrig och vill beställa?
+                <br>
+                Klicka här!
+            </a>
+        </div>
     </div>
-    -->
+    
     <div class="row row-cols-1 row-cols-md-2 g-4">
         <div class="col">
             <div class="card h-100">
