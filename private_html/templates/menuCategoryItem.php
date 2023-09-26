@@ -1,6 +1,7 @@
 <div class="col text-dark">
     <div class="card h-100">
         <?php
+        /*
             if (is_null($item['imageData']))
             {
                 ?>
@@ -19,6 +20,7 @@
                 <img class="card-img-top menuCategoryItem-picture" src="<?=urldecode(base64_decode($item['imageData']))?>" alt="pictue of product">
                 <?php
             }
+        */
         ?>
         <div class="card-body">
             <h5 class="card-title"><?=$item['name']?></h5>
