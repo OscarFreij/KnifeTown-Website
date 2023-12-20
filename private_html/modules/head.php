@@ -63,6 +63,7 @@
                 }
             }
             ?>
+            <!-- Robots Meta -->
             <meta name="robots" content="noindex">
             <?php
         }
