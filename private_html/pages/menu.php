@@ -11,7 +11,7 @@
     <div class="row my-3 justify-content-center">
         <div class="col">
             <a class="fs-4 text-center text btn btn-success mt-2 col-12 online-order-btn" href="https://qopla.com/restaurant/knifetown-burgers-/qQALLpRyEO/order">
-                Är du hungrig och vill beställa?
+                Är du hungrig och vill beställa i knivsta?
                 <br>
                 Klicka här!
             </a>
