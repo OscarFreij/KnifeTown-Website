@@ -11,7 +11,7 @@
             </span>
             <br>
             <span class="fs-5 text">
-                Adress: Stationsvägen 2, 741 30 Knivsta
+                Adress: Kungsgatan 113, 753 18 Uppsala
             </span>
         </div>
         <div class="container col-12 col-ld-6">
