@@ -9,7 +9,7 @@
             Skriv ditt meddelande och kontaktuppgifter nedan så hör vi av oss så snart vi kan :)
         </span>
         <span class="fs-4 text-center text my-3">
-            Dagliga beställningar ska inte skickas genom detta formulär utan ring på <a href="tel:+46737815366">+46737815366</a>.
+            Dagliga beställningar görs genom knappen på meny sidan! Dem kan alltså <b>inte</b> göras härifrån!
         </span>
         <form class="container" id="mainContactForm" name="contactForm" onsubmit="event.preventDefault(); sendMessage();">
             <div class="mb-3">
