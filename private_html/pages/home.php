@@ -18,7 +18,7 @@
     <div class="row row-cols-1 row-cols-md-2 g-4">
         <div class="col">
             <div class="card h-100">
-                <img src="static/media/images/burger_1.jpg" class="card-img-top" alt="..." height="220" style="object-fit: cover;">
+                <img src="static/media/images/burger_2.png" class="card-img-top" alt="..." height="220" style="object-fit: cover;">
                 <div class="card-footer">
                     <a href="?page=menu" class="btn btn-dark col-12 fw-bold fs-5 stretched-link">Vår meny!</a>
                 </div>
