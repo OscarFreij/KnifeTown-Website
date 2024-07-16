@@ -822,7 +822,7 @@ class functions
         }
         else if ($data['type'] == 2)
         {
-            $reciver = $credArray['oauthUserEmail'];
+            $reciver = $credArray['technicalEmailReceivers'];
             //$reciver = "otg020313@gmail.com";
         }
         $phone = $data['phone'];
