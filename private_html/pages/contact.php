@@ -16,7 +16,7 @@
                 <label for="type" class="form-label">Typ av meddelande (Krävs)</label>
                 <select class="form-select" aria-label="Default select example" id="type" name="type" require>
                     <option value="1">Vanlig fråga</option>
-                    <option value="2">Tekniskt fel</option>
+                    <option value="2">Tekniskt fel (Gäller enbart fel på knifetownburgers.se och inte beställningar genom Qopla)</option>
                 </select>
             </div>
             <div class="mb-3">
