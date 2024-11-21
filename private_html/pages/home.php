@@ -34,7 +34,7 @@
         </div>
         <div class="col-12">
             <div class="card h-100">
-                <img src="static/media/images/map_image_1.jpg" class="card-img-top" alt="..." height="220" style="object-fit: cover;">
+                <img src="static/media/images/map_image_1.png" class="card-img-top" alt="..." height="220" style="object-fit: cover;">
                 <div class="card-footer">
                     <a href="?page=findus" class="btn btn-dark col-12 fw-bold fs-5 stretched-link">Hitta till oss!</a>
                 </div>
