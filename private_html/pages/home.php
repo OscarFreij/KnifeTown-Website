@@ -26,7 +26,7 @@
         </div>
         <div class="col">
             <div class="card h-100">
-                <img src="static/media/images/vagn_1.jpg" class="card-img-top" alt="..." height="220" style="object-fit: cover; object-position: 0px 70%">
+                <img src="static/media/images/resurang_1.jpeg" class="card-img-top" alt="..." height="220" style="object-fit: cover; object-position: 0px 70%">
                 <div class="card-footer">
                     <a href="?page=about" class="btn btn-dark col-12 fw-bold fs-5 stretched-link">Om oss!</a>
                 </div>
