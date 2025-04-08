@@ -12,15 +12,13 @@ class credentials
     public function getDBCredentials()
     {
         $data = $this->readFileData("../private_html/access.json");
-        $this->dbCredentials = array("servername" => $data->servername,"username" => $data->dbUsername, "password" => $data->dbPassword, "dbname" => $data->dbName);
-        return $this->dbCredentials;
+        return array("servername" => $data->servername,"username" => $data->dbUsername, "password" => $data->dbPassword, "dbname" => $data->dbName);
     }
 
     public function getMailCredentials()
     {
         $data = $this->readFileData("../private_html/access.json");
-        $this->mailCredentials = array("oauthUserEmail" => $data->oauthUserEmail,"oauthClientId" => $data->oauthClientId,"oauthClientSecret" => $data->oauthClientSecret,"oauthRefreshToken" => $data->oauthRefreshToken, "emailReceivers" => $data->emailReceivers);
-        return $this->mailCredentials;
+        return array("oauthUserEmail" => $data->oauthUserEmail,"oauthClientId" => $data->oauthClientId,"oauthClientSecret" => $data->oauthClientSecret,"oauthRefreshToken" => $data->oauthRefreshToken, "emailReceivers" => $data->emailReceivers, "technicalEmailReceivers" => $data->technicalEmailReceivers);
     }
 
     private function readFileData($fileToRead)

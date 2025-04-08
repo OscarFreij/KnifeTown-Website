@@ -5,9 +5,9 @@ function sendMessage()
         $d1 = document.querySelector("#email").value;
         $d2 = document.querySelector("#phone").value;
         $d3 = document.querySelector("#message").value;
-        $.post( "callback.php", { email: $d1, phone: $d2, message: $d3 } );
+        $d4 = document.querySelector("#type").value;
+        $.post( "callback.php", { email: $d1, phone: $d2, message: $d3 , type: $d4} );
         alert("Meddelandet är nu skickat till oss!");
-        location.reload();
     }
     else
     {
