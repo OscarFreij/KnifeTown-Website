@@ -1,7 +1,6 @@
 <div class="col text-dark">
     <div class="card h-100">
         <?php
-        /*
             if (is_null($item['imageData']))
             {
                 ?>
@@ -9,7 +8,7 @@
                     <title>Placeholder</title>
                     <rect width="100%" height="100%" fill="#868e96"></rect>
                     <text x="50%" y="50%" fill="#dee2e6" dy=".3em" dominant-baseline="middle" text-anchor="middle">
-                        Placeholder Image
+                        <?=$item['name']?>
                     </text>
                 </svg>
                 <?php
@@ -20,7 +19,6 @@
                 <img class="card-img-top menuCategoryItem-picture" src="<?=urldecode(base64_decode($item['imageData']))?>" alt="pictue of product">
                 <?php
             }
-        */
         ?>
         <div class="card-body">
             <h5 class="card-title"><?=$item['name']?></h5>
