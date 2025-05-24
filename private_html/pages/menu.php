@@ -18,6 +18,12 @@
         </div>
     </div>
 
+    <div class="row my-3 justify-content-center">
+        <div class="col">
+            <h2 class="fs-4 text-center text mt-2 col-12">Självklart har vi också glutenfritt bröd!<br>Fråga bara vid beställning!</h2>
+        </div>
+    </div>
+
     
     
 </div>
